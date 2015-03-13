@@ -9,4 +9,5 @@
  RUN ansible-playbook lxc.yml -c local
  RUN sudo su harm -c 'ansible-playbook -c local dev.yml'
  EXPOSE 22 3000
+ CMD sudo -i -u harm fish
  #ENTRYPOINT [“/usr/bin/foo”]
