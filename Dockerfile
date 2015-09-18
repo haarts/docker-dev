@@ -1,4 +1,4 @@
-FROM monetas/golang-base:latest
+FROM registry.monetas.io/golang-base:latest
 MAINTAINER "harm.aarts@monetas.net"
 
 #ADD bashrc /opt/bashrc
@@ -11,7 +11,7 @@ RUN useradd --create-home runner
 COPY runner_bashrc /home/runner/.bashrc
 
 WORKDIR /opt/go/src/github.com/monetas/gotary
-CMD sh /opt/run_services.sh &&\
-    cd $GOPATH/src/github.com/monetas/gotary/scripts/database/ && sh install.sh && \
-    cd ../.. && \
+CMD /opt/run_services.sh &&\
+    $GOPATH/src/github.com/monetas/gotary/scripts/database/install.sh && \
+    cd $GOPATH/src/github.com/monetas/gotary && \
     su runner
